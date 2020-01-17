@@ -1,7 +1,7 @@
 const SampleAPI = require('./api/SampleAPI');
 
 module.exports = {
-  getAllEndpoints: (app) => {
+  getAllEndpoints(app) {
     app.use('/api/', SampleAPI);
   }
 };
