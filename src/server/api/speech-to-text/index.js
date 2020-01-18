@@ -8,14 +8,14 @@
   // pull in the required packages.
   var sdk = require("microsoft-cognitiveservices-speech-sdk");
   var fs = require("fs");
-
+  var path = require('path');
   // replace with your own subscription key,
   // service region (e.g., "westus"), and
   // the name of the file you want to run
   // through the speech recognizer.
-  var subscriptionKey = "0f28abcacf044b649c05548de824bdc3";
+  var subscriptionKey = "c1b4b78c77d5406883eab62e0b13912b";
   var serviceRegion = "southeastasia"; // e.g., "westus"
-  var filename = "speech.wav"; // 16000 Hz, Mono
+  var filename = path.join(__dirname, "../../uploads/sample.wav"); // 16000 Hz, Mono
 
   // create the push stream we need for the speech sdk.
   var pushStream = sdk.AudioInputStream.createPushStream();
@@ -39,7 +39,7 @@
     subscriptionKey,
     serviceRegion
   );
-
+  console.log(pushStream)
   // setting the recognition language to English.
   speechConfig.speechRecognitionLanguage = "en-US";
 
