@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { ReactMic } from '@cleandersonlobo/react-mic';
-import blobToArrayBuffer from 'blob-to-arraybuffer';
-import axios from 'axios';
+import moment from 'moment';
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
-
+const transcripts = [];
 export default class AboutPage extends Component {
   constructor(props) {
     super(props);
@@ -40,8 +39,14 @@ export default class AboutPage extends Component {
         // Get a transcript of what was said.
         const { transcript } = event.results[current][0];
 
+        const currentDate = moment().format('DD/MM/YYYY HH:mm:ss');
+        const content = transcript.trim();
         // Add the current transcript to the contents of our Note.
-        console.log(transcript);
+        console.log(currentDate + ": " + content);
+        transcripts.push({
+          date: currentDate,
+          content: content
+        });
       };
       recognition.start();
     } catch (e) {
@@ -55,6 +60,7 @@ export default class AboutPage extends Component {
 
   stopRecording = () => {
     recognition.stop();
+    console.log(transcripts);
     this.setState({
       record: false
     });
@@ -63,12 +69,6 @@ export default class AboutPage extends Component {
   render() {
     return (
       <div>
-        <ReactMic
-          record={this.state.record}
-          className="sound-wave"
-          strokeColor="#000000"
-          backgroundColor="#FF4081"
-        />
         <button onClick={this.startRecording} type="button">Start</button>
         <button onClick={this.stopRecording} type="button">Stop</button>
       </div>
