@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import SampleComponent from '../components/SampleComponent';
+import Banner from '../components/Banner';
 
 export default class HomePage extends Component {
   render() {
     return (
-      <SampleComponent />
+      <div> 
+        <Banner />
+      </div>
     );
   }
 }
