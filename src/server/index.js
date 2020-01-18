@@ -1,6 +1,7 @@
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
+const fileUpload = require('express-fileupload');
 const expressWinston = require('express-winston');
 const winston = require('winston');
 
@@ -56,6 +57,7 @@ app.use(expressWinston.errorLogger({
   )
 }));
 app.use(bodyParser.json());
+app.use(fileUpload());
 app.use(cors());
 app.listen(process.env.PORT || 8080, () => console.log(`Listening on port ${process.env.PORT || 8080}!`));
 
