@@ -37,7 +37,6 @@ class DoughnutChart extends React.Component {
   render() {
     return (
       <div>
-        <TimeFilter chartId={ChartActionTypes.TOTAL_EMOTION_ID} />
         <canvas ref={this.canvasRef} />
       </div>
     );

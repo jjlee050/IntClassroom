@@ -1,12 +1,7 @@
 import React from 'react';
 import Chart from 'chart.js';
-import { connect } from 'react-redux';
 import * as ChartAnnotation from 'chartjs-plugin-annotation';
 
-import ChartActionTypes from '../redux/chart/chart.types';
-import { selectChartById } from '../redux/chart/chart.selector';
-
-import TimeFilter from './TimeFilter';
 import moment from 'moment';
 
 class LineChart extends React.Component {
@@ -106,7 +101,6 @@ class LineChart extends React.Component {
   render() {
     return (
       <div>
-        <TimeFilter />
         <canvas ref={this.chartRef} />
       </div>
     );

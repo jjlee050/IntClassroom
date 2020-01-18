@@ -45,26 +45,10 @@ function getRandomDateArray(fromTime) {
 }
 
 export function getData() {
-  let data = [];
-
-  data.push({
-    title: 'Random',
-    data: getRandomArray(20)
-  });
-
-  data.push({
-    title: 'Categories',
-    data: getRandomArray(20)
-  });
-
-  data.push({
-    title: 'Categories',
-    data: getRandomArray(10)
-  });
-  data.push({
+  let data = {
     title: 'Data 4',
     data: getRandomArray(6, emotions)
-  });
+  };
 
   return data;
 }

@@ -4,14 +4,15 @@ import { createStructuredSelector } from 'reselect';
 
 import { selectCharts } from '../redux/chart/chart.selector';
 
-import LineChart from '../components/LineChart';
-import BarChart from '../components/BarChart';
+import ChartContainer from '../components/ChartContainer';
 import DoughnutChart from '../components/DoughnutChart';
+import LineChart from '../components/LineChart';
 
 import { getData, getDateData } from '../redux/data';
 import ChartActionTypes from '../redux/chart/chart.types';
 
 import '../assets/stylesheets/home.css';
+import { Box } from '@material-ui/core';
 
 class HomePage extends Component {
   constructor(props) {
@@ -41,30 +42,39 @@ class HomePage extends Component {
     return (
       <div className="home">
         <h1>Home</h1>
-        <div className="main chart-wrapper">
-          <LineChart
-            minDate={this.props.charts[0].minDate}
-            maxDate={this.props.charts[0].maxDate}
-            data={this.state.dateData}
-            id={ChartActionTypes.AVERAGE_EMOTION_ID}
-          />
-        </div>
-        <div className="space"></div>
-        <div className="main chart-wrapper">
-          <DoughnutChart
-            data={this.state.data[3].data}
-            title={this.state.data[3].title}
-            colors={[
-              '#a8e0ff',
-              '#8ee3f5',
-              '#70cad1',
-              '#3e517a',
-              '#b08ea2',
-              '#BBB6DF'
-            ]}
-            id={ChartActionTypes.TOTAL_EMOTION_ID}
-          />
-        </div>
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignContent="center"
+          justifyContent="center"
+          m={2}
+        >
+          <Box>
+            <ChartContainer
+              chartId={ChartActionTypes.AVERAGE_EMOTION_ID}
+              chart={<LineChart data={this.state.dateData} />}
+            />
+          </Box>
+          <Box>
+            <ChartContainer
+              chartId={ChartActionTypes.TOTAL_EMOTION_ID}
+              chart={
+                <DoughnutChart
+                  data={this.state.data.data}
+                  title={this.state.data.title}
+                  colors={[
+                    '#a8e0ff',
+                    '#8ee3f5',
+                    '#70cad1',
+                    '#3e517a',
+                    '#b08ea2',
+                    '#BBB6DF'
+                  ]}
+                />
+              }
+            />
+          </Box>
+        </Box>
       </div>
     );
   }
