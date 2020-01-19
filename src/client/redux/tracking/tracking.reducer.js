@@ -1,8 +1,8 @@
 import moment from 'moment';
 
 const INITIAL_STATE = {
-  emotion: [],
-  transcripts: []
+  emotions: [],
+  transcript: []
 };
 
 const trackingReducer = (state = INITIAL_STATE, action) => {

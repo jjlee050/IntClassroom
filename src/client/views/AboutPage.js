@@ -54,13 +54,13 @@ class AboutPage extends Component {
     axios.get('/api/startVideo').then((res) => {
       recognition.stop();
       console.log(transcripts);
-      console.log(res);
-      setInformation({
-        emotions: res,
+      console.log(res.data);
+      this.props.setInformation({
+        emotions: res.data,
         transcript: transcripts
       });
+    }).then(() => {
       this.props.history.push('/stats');
-
     });
 
   }
@@ -81,7 +81,7 @@ class AboutPage extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  setInformation: (emotion, transcript) => dispatch(setInformation(emotion, transcript))
+  setInformation: (emotions, transcript) => dispatch(setInformation(emotions, transcript))
 });
 
 export default withRouter(connect(null, mapDispatchToProps)(AboutPage));

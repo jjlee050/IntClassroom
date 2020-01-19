@@ -1,4 +1,4 @@
-export const setInformation = ({ emotion, transcript }) => ({
+export const setInformation = ({ emotions, transcript }) => ({
   type: 'SET_INFO',
-  payload: { emotion, transcript }
+  payload: { emotions: emotions, transcript }
 });

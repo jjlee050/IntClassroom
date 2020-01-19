@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
+import { Box } from '@material-ui/core';
 import ChartContainer from '../components/ChartContainer';
 import DoughnutChart from '../components/DoughnutChart';
 import LineChart from '../components/LineChart';
@@ -9,13 +10,14 @@ import LineChart from '../components/LineChart';
 import { getData, getDateData } from '../redux/data';
 import ChartActionTypes from '../redux/chart/chart.types';
 import { selectCharts } from '../redux/chart/chart.selector';
+import { selectEmotions, selectTranscript } from '../redux/tracking/tracking.selector';
 
 import '../assets/stylesheets/stats.css';
-import { Box } from '@material-ui/core';
 
 class StatsPage extends Component {
   constructor(props) {
     super(props);
+    console.log(this.props);
     this.state = {
       data: getData(),
       dateData: getDateData(this.props.charts[0].minDate)
@@ -56,7 +58,7 @@ class StatsPage extends Component {
           <Box m={2}>
             <ChartContainer
               chartId={ChartActionTypes.TOTAL_EMOTION_ID}
-              chart={
+              chart={(
                 <DoughnutChart
                   data={this.state.data.data}
                   title={this.state.data.title}
@@ -69,7 +71,7 @@ class StatsPage extends Component {
                     '#BBB6DF'
                   ]}
                 />
-              }
+              )}
             />
           </Box>
         </Box>
@@ -79,7 +81,9 @@ class StatsPage extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  charts: selectCharts
+  charts: selectCharts,
+  emotions: selectEmotions,
+  transcript: selectTranscript
 });
 
 export default connect(mapStateToProps)(StatsPage);
