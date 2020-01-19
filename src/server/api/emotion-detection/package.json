@@ -1,0 +1,20 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "buffer-json": "^2.0.0",
+    "child-process": "^1.0.2",
+    "child_process": "^1.0.2",
+    "express": "^4.17.1",
+    "microsoft-cognitiveservices-speech-sdk": "^1.9.0",
+    "nodemon": "^2.0.2",
+    "promise": "^8.0.3"
+  }
+}
