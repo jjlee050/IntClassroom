@@ -102,7 +102,6 @@ while True:
         # print(datetime.now()-starttime)
         data.append([person,emotion_dict[maxindex],datetime.now().strftime("%d-%b-%Y %H:%M:%S.%f")])
 
-
     cv2.imshow('Video', cv2.resize(frame,(800,400),interpolation = cv2.INTER_CUBIC))
     if cv2.waitKey(1) & 0xFF == ord('q'): 
         print({"data":data})
