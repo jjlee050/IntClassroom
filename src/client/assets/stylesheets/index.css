@@ -22,3 +22,12 @@ body {
 .section.even {
   background-color: #4fddd5;
 }
+
+.cardEnv {
+  padding: 13.5rem 13.5rem;
+}
+
+.card {
+  padding: 4rem 4rem;
+  border-radius: 0.25rem;
+}

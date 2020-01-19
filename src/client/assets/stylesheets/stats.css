@@ -1,7 +1,16 @@
-.stats {
+.statsEnv {
   text-align: center;
+  padding: 2rem 2rem;
+}
+
+.statsTitle {
   background: #ffffff;
-  padding: 16px;
+  border-radius: 0.25rem;
+}
+
+.stats {
+  background: #ffffff;
+  border-radius: 0.25rem;
 }
 .spacing {
   height: 180px;

@@ -10,7 +10,7 @@ export default class Banner extends Component {
         animate={{ rotate: 1080 }}
         transition={{ duration: 2 }}
       >
-        <Image src={Icon} height="500" />
+        <Image src={Icon} height="550" />
       </motion.div>
     );
   }

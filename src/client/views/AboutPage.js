@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setInformation } from '../redux/tracking/tracking.action';
+import '../assets/stylesheets/index.css';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
 const transcripts = [];
 
-export default class AboutPage extends Component {
+class AboutPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,7 +22,7 @@ export default class AboutPage extends Component {
     };
   }
 
-  startRecording = () => {
+  componentDidMount() {
     try {
       recognition.continuous = true;
 
@@ -48,9 +56,10 @@ export default class AboutPage extends Component {
         const content = transcript.trim();
         // Add the current transcript to the contents of our Note.
         console.log(currentDate + ': ' + content);
+        console.log(`${currentDate}: ${content}`);
         transcripts.push({
           date: currentDate,
-          content: content
+          content
         });
       };
       recognition.start();
@@ -58,29 +67,41 @@ export default class AboutPage extends Component {
       console.error(e);
     }
 
-    this.setState({
-      record: true
-    });
-  };
-
-  stopRecording = () => {
-    recognition.stop();
-    console.log(transcripts);
-    this.setState({
-      record: false
-    });
-  };
+    axios
+      .get('/api/startVideo')
+      .then(res => {
+        recognition.stop();
+        console.log(transcripts);
+        console.log(res.data);
+        this.props.setInformation({
+          emotions: res.data,
+          transcript: transcripts
+        });
+      })
+      .then(() => {
+        this.props.history.push('/stats');
+      });
+  }
 
   render() {
     return (
-      <div>
-        <button onClick={this.startRecording} type="button">
-          Start
-        </button>
-        <button onClick={this.stopRecording} type="button">
-          Stop
-        </button>
+      <div class="cardEnv">
+        <Card className="card">
+          <CardContent>
+            <Typography variant="h4" component="h4">
+              We will be starting to track soon. Please wait while we setup the
+              environment.
+            </Typography>
+          </CardContent>
+        </Card>
       </div>
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  setInformation: (emotions, transcript) =>
+    dispatch(setInformation(emotions, transcript))
+});
+
+export default withRouter(connect(null, mapDispatchToProps)(AboutPage));

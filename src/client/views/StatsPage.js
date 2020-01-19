@@ -4,6 +4,7 @@ import { createStructuredSelector } from 'reselect';
 import Tokenizer from 'sentence-tokenizer';
 import moment from 'moment';
 
+import { Box } from '@material-ui/core';
 import ChartContainer from '../components/ChartContainer';
 import DoughnutChart from '../components/DoughnutChart';
 import LineChart from '../components/LineChart';
@@ -11,9 +12,12 @@ import LineChart from '../components/LineChart';
 import { getData, getDateData } from '../redux/data';
 import ChartActionTypes from '../redux/chart/chart.types';
 import { selectCharts } from '../redux/chart/chart.selector';
+import {
+  selectEmotions,
+  selectTranscript
+} from '../redux/tracking/tracking.selector';
 
 import '../assets/stylesheets/stats.css';
-import { Box } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import MicIcon from '@material-ui/icons/Mic';
@@ -40,6 +44,7 @@ function renderRow(transcripts) {
 class StatsPage extends Component {
   constructor(props) {
     super(props);
+    console.log(this.props);
     this.state = {
       data: getData(),
       dateData: getDateData(this.props.charts[0].minDate),
@@ -141,9 +146,10 @@ class StatsPage extends Component {
 
   render() {
     return (
-      <div className="stats">
-        <h1>Metrics</h1>
+      <div className="statsEnv">
+        <h1 className="statsTitle">Metrics</h1>
         <Box
+          className="stats"
           display="flex"
           flexDirection="column"
           alignContent="center"
@@ -242,7 +248,9 @@ class StatsPage extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  charts: selectCharts
+  charts: selectCharts,
+  emotions: selectEmotions,
+  transcript: selectTranscript
 });
 
 export default connect(mapStateToProps)(StatsPage);

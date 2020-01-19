@@ -8,12 +8,11 @@ export default class Banner extends Component {
     return (
       <div className="banner">
         <IconAnimation />
-        <p> Testing objectives </p>
         <Button
           component={Link}
           variant="contained"
           color="primary"
-          to="/stats"
+          to="/about"
         >
           Click here to start tracking
         </Button>
