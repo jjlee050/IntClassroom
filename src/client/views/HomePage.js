@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
+
 import Banner from '../components/Banner';
 
-export default class HomePage extends Component {
+import '../assets/stylesheets/home.css';
+
+class HomePage extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
-      <div> 
+      <div className="home">
         <Banner />
       </div>
     );
   }
 }
+
+export default HomePage;

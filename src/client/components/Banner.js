@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
 import IconAnimation from './IconAnimation';
 
 export default class Banner extends Component {
@@ -8,7 +9,12 @@ export default class Banner extends Component {
       <div className="banner">
         <IconAnimation />
         <p> Testing objectives </p>
-        <Button variant="primary">
+        <Button
+          component={Link}
+          variant="contained"
+          color="primary"
+          to="/stats"
+        >
           Click here to start tracking
         </Button>
       </div>
