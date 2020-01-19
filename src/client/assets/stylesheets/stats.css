@@ -1,5 +1,14 @@
-.stats {
+.statsEnv {
   text-align: center;
+  padding: 2rem 2rem;
+}
+
+.statsTitle {
   background: #ffffff;
-  padding: 16px;
+  border-radius: 1rem;
+}
+
+.stats {
+  background: #ffffff;
+  border-radius: 1rem;
 }

@@ -5,6 +5,7 @@ import axios from 'axios';
 import moment from 'moment';
 import { withRouter } from 'react-router-dom';
 import { setInformation } from '../redux/tracking/tracking.action';
+import '../assets/stylesheets/index.css';
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
@@ -67,11 +68,11 @@ class AboutPage extends Component {
 
   render() {
     return (
-      <div>
-        <Card>
+      <div class="cardEnv">
+        <Card className="card">
           <CardContent>
             <Typography variant="h4" component="h4">
-              Start tracking...
+              We will be starting to track soon. Please wait while we setup the environment.
             </Typography>
           </CardContent>
         </Card>

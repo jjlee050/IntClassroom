@@ -41,9 +41,10 @@ class StatsPage extends Component {
 
   render() {
     return (
-      <div className="stats">
-        <h1>Metrics</h1>
+      <div className="statsEnv">
+        <h1 className="statsTitle">Metrics</h1>
         <Box
+          className="stats"
           display="flex"
           flexDirection="column"
           alignContent="center"

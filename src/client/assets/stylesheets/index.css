@@ -22,3 +22,11 @@ body {
 .section.even {
   background-color: #4fddd5;
 }
+
+.cardEnv {
+  padding: 18rem 18rem;
+}
+
+.card {
+  padding: 4rem 4rem;
+}
