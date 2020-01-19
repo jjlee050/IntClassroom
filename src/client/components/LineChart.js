@@ -40,6 +40,7 @@ class LineChart extends React.Component {
         ]
       },
       options: {
+        maintainAspectRatio: true,
         responsive: true,
         scales: {
           xAxes: [

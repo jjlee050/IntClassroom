@@ -1,9 +1,6 @@
 import React from 'react';
 import Chart from 'chart.js';
 
-import ChartActionTypes from '../redux/chart/chart.types';
-import TimeFilter from './TimeFilter';
-
 class DoughnutChart extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +17,8 @@ class DoughnutChart extends React.Component {
     this.myChart = new Chart(this.canvasRef.current, {
       type: 'doughnut',
       options: {
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        showTooltips: true
       },
       data: {
         labels: this.props.data.map(d => d.label),
@@ -35,11 +33,7 @@ class DoughnutChart extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <canvas ref={this.canvasRef} />
-      </div>
-    );
+    return <canvas ref={this.canvasRef} />;
   }
 }
 

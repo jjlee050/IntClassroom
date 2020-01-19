@@ -20,7 +20,7 @@ function getRandomArray(numItems, labels) {
   for (var i = 0; i < numItems; i++) {
     data.push({
       label: labels[i],
-      value: Math.round(20 + 80 * Math.random())
+      value: Math.round(100 * Math.random())
     });
   }
   return data;
@@ -38,7 +38,7 @@ function getRandomDateArray(fromTime) {
   for (let i = numItems; i > 0; i--) {
     data.push({
       time: new Date(baseTime - i * secMs),
-      value: Math.round(20 + 80 * Math.random())
+      value: Math.round(100 * Math.random())
     });
   }
   return data;
