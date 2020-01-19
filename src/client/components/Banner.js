@@ -12,7 +12,7 @@ export default class Banner extends Component {
           component={Link}
           variant="contained"
           color="primary"
-          to="/stats"
+          to="/about"
         >
           Click here to start tracking
         </Button>

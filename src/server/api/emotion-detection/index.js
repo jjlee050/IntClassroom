@@ -1,17 +1,19 @@
 // import express JS module into app
 // and creates its variable.
 var express = require("express");
+var cors = require("cors");
 var app = express();
 
+app.use(cors());
 // Creates a server which runs on port 3000 and
 // can be accessed through localhost:3000
-app.listen(3000, function() {
-  console.log("server running on port 3000");
+app.listen(3002, function() {
+  console.log("server running on port 3002");
 });
 
 // Function callName() is executed whenever
 // url is of the form localhost:3000/name
-app.get("/startVideo", callName);
+app.get("/record/startVideo", callName);
 
 function callName(req, res) {
   console.log("callname");
@@ -206,17 +208,25 @@ function callName(req, res) {
             data_return[4]["data"].push(temp);
           }
         } else if (data[i][1] == "Fearful") {
-          if (
-            data[i][0] > 1 &&
-            data_return[5]["data"][data_return[5]["data"].length - 1].time
-          ) {
+          if (data_return[5]["data"][data_return[5]["data"].length - 1].hasOwnProperty('time')) {
             if (
-              data_return[5]["data"][data_return[5]["data"].length - 1].time ==
-              data[i][2]
+              data_return[5]["data"][data_return[5]["data"].length - 1].time != 
+              data[i][0] > 1 
             ) {
-              data_return[5]["data"][
-                data_return[5]["data"].length - 1
-              ].value += 1;
+              if (
+                data_return[5]["data"][data_return[5]["data"].length - 1].time ==
+                data[i][2]
+              ) {
+                data_return[5]["data"][
+                  data_return[5]["data"].length - 1
+                ].value += 1;
+              } else {
+                temp = {
+                  value: 1,
+                  time: data[i][2]
+                };
+                data_return[5]["data"].push(temp);
+              }
             } else {
               temp = {
                 value: 1,
@@ -224,12 +234,6 @@ function callName(req, res) {
               };
               data_return[5]["data"].push(temp);
             }
-          } else {
-            temp = {
-              value: 1,
-              time: data[i][2]
-            };
-            data_return[5]["data"].push(temp);
           }
         } else if (data[i][1] == "Disgusted") {
           if (
@@ -259,7 +263,7 @@ function callName(req, res) {
           }
         }
         if (i == data.length - 1) {
-          console.log(data_return);
+          //console.log(data_return);
           res.json(data_return);
         }
       }
